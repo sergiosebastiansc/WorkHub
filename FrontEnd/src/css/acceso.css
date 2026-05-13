@@ -1,0 +1,140 @@
+:root {
+    --bg: #020617;
+    --surface: #0f172a;
+    --crystal-1: rgba(255, 255, 255, 0.03);
+    --crystal-2: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.12);
+    --accent: #3b82f6;
+    --accent-glow: rgba(59, 130, 246, 0.5);
+    --success: #10b981;
+    --danger: #ef4444;
+    --prism-glow: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15), transparent 70%);
+}
+
+html, body { height: 100%; width: 100%; }
+
+body {
+    background-color: var(--bg);
+    background-image: var(--prism-glow);
+    color: #f8fafc;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.login-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stratum-card {
+    background: var(--crystal-1);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 480px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+}
+.stratum-card::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 40%);
+    pointer-events: none;
+}
+.stratum-card:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+    background: var(--crystal-2);
+    box-shadow: 0 0 40px var(--accent-glow), 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+}
+
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.data-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+.status-dot { width: 10px; height: 10px; background-color: var(--success); border-radius: 50%; display: inline-block; box-shadow: 0 0 10px var(--success); animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.card-title { font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.03em; }
+.card-desc { color: #64748b; font-size: 0.9rem; margin-bottom: 2rem; }
+
+.form-group { margin-bottom: 1.5rem; }
+.form-label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+
+.form-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--border);
+    padding: 0.9rem 1rem;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+.form-input::placeholder { color: #334155; }
+.form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    width: 100%;
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+.btn-primary:hover { background: #2563eb; transform: translateX(4px); box-shadow: 0 0 30px rgba(59, 130, 246, 0.4); }
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: #475569;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    position: relative;
+    z-index: 1;
+}
+.back-link:hover { color: var(--accent); }
+
+@media (max-width: 768px) {
+    main { padding: 1.5rem 1rem; align-items: flex-start; padding-top: 3rem; }
+    .stratum-card { padding: 2rem 1.5rem; max-width: 100%; border-radius: 8px; }
+    .card-title { font-size: 1.5rem; }
+}
+@media (max-width: 480px) {
+    main { padding: 1rem; padding-top: 2rem; align-items: flex-start; }
+    .stratum-card { padding: 1.5rem 1.2rem; transition: none; }
+    .stratum-card:hover { transform: none; }
+    .card-title { font-size: 1.3rem; }
+    .form-input { padding: 0.8rem; font-size: 0.95rem; }
+    .btn-primary { padding: 0.9rem; }
+}
